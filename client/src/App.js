@@ -7,7 +7,7 @@ import User from "./pages/User"
 import Login from "./pages/Login"
 import PageNotFound from "./pages/404"
 import Navigation from "./components/Navigation"
-
+import Canvas from './components/Canvas'
 import "bootstrap/dist/css/bootstrap.min.css"
 
 function App() {
@@ -26,22 +26,10 @@ function App() {
   }, [])
 
   return (
-    <div>
-      <Navigation />
-      <Container>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home authUser={ authUser } />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/user">
-              <Route path=":id" element={<User />} />
-            </Route>
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </Router>
-      </Container>
-    </div>
+    <>
+    <Navigation/>
+    <Canvas/>
+    </>
   );
 }
 
