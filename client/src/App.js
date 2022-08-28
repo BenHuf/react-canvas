@@ -8,6 +8,8 @@ import Login from "./pages/Login"
 import PageNotFound from "./pages/404"
 import Navigation from "./components/Navigation"
 import Canvas from './components/Canvas'
+import Discussion from './pages/Discussion'
+import Rorschachs from './pages/Rorschachs'
 import "bootstrap/dist/css/bootstrap.min.css"
 
 function App() {
@@ -28,7 +30,22 @@ function App() {
   return (
     <>
     <Navigation/>
-    <Canvas/>
+    <Container>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home authUser={ authUser } />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/user">
+            <Route path=":id" element={<User />} />
+          </Route>
+          <Route path="/draw" element={<Canvas />} />
+          <Route path="/discuss" element={<Discussion />} />
+          <Route path="/rorschachs" element={<Rorschachs />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </Router>
+    </Container>
     </>
   );
 }
