@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { HashRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import Container from "react-bootstrap/Container"
 import Home from "./pages/Home"
 import Users from "./pages/Users"
@@ -15,25 +15,25 @@ import "bootstrap/dist/css/bootstrap.min.css"
 function App() {
   const [ authUser, setAuthUser ] = useState(null)
 
-  const checkForValidUser = async() => {
-    const authCheck = await fetch("/api/user/lookup")
-    const checkResult = await authCheck.json()
-    if( checkResult && checkResult.result === "success" ){
-      setAuthUser(checkResult.payload)
-    }
-  }
+  // const checkForValidUser = async() => {
+  //   const authCheck = await fetch("/api/user/lookup")
+  //   const checkResult = await authCheck.json()
+  //   if( checkResult && checkResult.result === "success" ){
+  //     setAuthUser(checkResult.payload)
+  //   }
+  // }
   
-  useEffect(() => {
-    checkForValidUser()
-  }, [])
+  // useEffect(() => {
+  //   checkForValidUser()
+  // }, [])
 
   return (
     <>
-    <Navigation/>
-    <Container>
-      <Router>
+      <HashRouter>
         <Routes>
-          <Route path="/" element={<Home authUser={ authUser } />} />
+          <Route path="/" element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route path="/draw" element={<Canvas />} />
           <Route path="/login" element={<Login />} />
           <Route path="/users" element={<Users />} />
           <Route path="/user">
@@ -43,9 +43,9 @@ function App() {
           <Route path="/discuss" element={<Discussion />} />
           <Route path="/rorschachs" element={<Rorschachs />} />
           <Route path="*" element={<PageNotFound />} />
+          </Route>
         </Routes>
-      </Router>
-    </Container>
+      </HashRouter>
     </>
   );
 }
