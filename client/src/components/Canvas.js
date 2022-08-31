@@ -16,17 +16,20 @@ function downloadURI(uri, name) {
 const Canvas = (props) => {
   const [tool, setTool] = React.useState('pen');
   const [color, setColor] = React.useState("#000000")
+  const [width, setWidth] = React.useState(7)
   const [lines, setLines] = React.useState([]);
   const [flips, setFlips] = React.useState([]);
+  const [canvas, setCanvas] = React.useState([]);
 
   const isDrawing = React.useRef(false);
 
-  // Mouse Events
+  //------ Mouse Events ------//
+
   const handleMouseDown = (e) => {
     isDrawing.current = true;
     const pos = e.target.getStage().getPointerPosition();
-    setLines([...lines, { tool, color, points: [pos.x, pos.y] }]);
-    setFlips([...flips, { tool, color, points: [window.innerWidth-pos.x, pos.y]}])
+    setLines([...lines, { tool, color, width, points: [pos.x, pos.y] }]);
+    setFlips([...flips, { tool, color, width, points: [window.innerWidth-pos.x, pos.y]}])
   };
 
   const handleMouseMove = (e) => {
@@ -59,12 +62,14 @@ const Canvas = (props) => {
     console.log("points" + lines.points)
   };
 
-  // End mouse events
+  //------ End mouse events -------//
+
+  //------ Touch events ------//
   const handleTouchStart = (e) => {
     isDrawing.current = true;
     const pos = e.target.getStage().getPointerPosition();
-    setLines([...lines, { tool, color, points: [pos.x, pos.y] }]);
-    setFlips([...flips, { tool, color, points: [window.innerWidth-pos.x, pos.y]}])
+    setLines([...lines, { tool, color, width, points: [pos.x, pos.y] }]);
+    setFlips([...flips, { tool, color, width, points: [window.innerWidth-pos.x, pos.y]}])
   };
 
   const handleTouchMove = (e) => {
@@ -96,10 +101,9 @@ const Canvas = (props) => {
     console.log("lines" + lines[0].points)
     console.log("points" + lines.points)
   };
-  // Mobile events
 
+  //------ End Touch events ------//
 
-  // End Mobile events
   const stageRef = React.useRef(null);
 
   const handleExport = () => {
@@ -116,30 +120,52 @@ const Canvas = (props) => {
       <p>Click and drag to draw!</p>
 
       {/* Tool Selector */}
-      <select
+      {/* <select
         value={tool}
         onChange={(e) => {
           setTool(e.target.value);
         }}
       >
+        <option value="pen" disabled>Tool</option>
         <option value="pen">Pen</option>
         <option value="eraser">Eraser</option>
-      </select>
+      </select> */}
 
       {/* Color Selector */}
-      <select
+      {/* <select
         value={color}
         onChange={(e) => {
           setColor(e.target.value);
         }}
       >
+        <option value="#000000" disabled>Color</option>
         <option value="black">Black</option>
         <option value="red">Red</option>
         <option value="blue">Blue</option>
         <option value="green">Green</option>
         <option value="purple">Purple</option>
         <option value="yellow">Yellow</option>
+      </select> */}
 
+      {/* Width Selector */}
+      <select
+        value={width}
+        onChange={(e) => {
+          setWidth(e.target.value);
+        }}
+        placeholder={"Width"}
+      >
+        <option value="7" disabled>Width</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
       </select>
 
       <Stage
@@ -154,14 +180,13 @@ const Canvas = (props) => {
         onTouchEnd={handleTouchEnd}
       >
         <Layer>
-          <Group>
             {lines.map((line, i) => (
               <Line
                 key={i}
                 points={line.points}
                 stroke={line.color}
                 shadowColor={line.color}
-                strokeWidth={5}
+                strokeWidth={line.width}
                 tension={0.5}
                 opacity={line.tool === 'pen' && 0.6 || line.tool === 'eraser' && 1}
                 lineCap="round"
@@ -171,16 +196,13 @@ const Canvas = (props) => {
                 }
               />
             ))}
-          </Group>
-        </Layer>    
-        <Layer>
-        {flips.map((flip, i) => (
+               {flips.map((flip, i) => (
               <Line
                 key={i}
                 points={flip.points}
                 stroke={flip.color}
                 shadowColor={flip.color}
-                strokeWidth={5}
+                strokeWidth={flip.width}
                 tension={0.5}
                 opacity={flip.tool === 'pen' && 0.6 || flip.tool === 'eraser' && 1}
                 lineCap="round"
@@ -190,7 +212,7 @@ const Canvas = (props) => {
                 }
               />
             ))}
-        </Layer>
+        </Layer>    
       </Stage>
 
       {/* Save button */}
