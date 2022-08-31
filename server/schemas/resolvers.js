@@ -11,7 +11,7 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
           .populate('pics')
-          // .populate('comments');
+          
     
         return userData;
       }
@@ -20,24 +20,25 @@ const resolvers = {
     },
     pics: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Pic.find(params).sort({ createdAt: -1 });
+      return (await Pic.find(params).sort({ createdAt: -1 }).populate('comments'));
     },
     pic: async (parent, { _id }) => {
-      return Pic.findOne({ _id });
+      return Pic.findOne({ _id })
+        .populate('comments')
     },
     // get all users
     users: async () => {
       return User.find()
         .select('-__v -password')
         .populate('pics')
-        // .populate('comments');
+        
     },
     // get a user by username
     user: async (parent, { username }) => {
       return User.findOne({ username })
         .select('-__v -password')
         .populate('pics')
-        // .populate('comments');
+        
     },
   },
   Mutation: {
