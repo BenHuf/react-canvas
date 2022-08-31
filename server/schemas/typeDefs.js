@@ -14,6 +14,7 @@ const typeDefs = gql`
     pngString: String
     createdAt: String
     username: String
+    comments: [Comment]
     collaborators: [User]
   }
 
@@ -32,7 +33,7 @@ const typeDefs = gql`
   type Query{
     me: User
     users: [User]
-    user(username: String): User
+    user(username: String!): User
     pics(username: String) : [Pic]
     pic(_id: ID!): Pic
 
