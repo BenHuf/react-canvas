@@ -35,13 +35,14 @@ export const getDiscussions = async () => {
     ];
 };
 
-// export const createDiscussion = async (text, parentId = null) => {
-//     return {
-//         id: Math.random().toString(36).substr(2, 9),
-//         body: text,
-//         parentId,
-//         userId: "1",
-//         username: "John",
-//         createdAt: new Date().toISOString(),
-//     };
-// };
+// functionality that backend will handle eventually
+export const createDiscussion = async (text, parentId = null) => {
+    return {
+        id: Math.random().toString(36).substr(2, 9),
+        body: text,
+        parentId,
+        userId: "1",
+        username: "John",
+        createdAt: new Date().toISOString(),
+    };
+};

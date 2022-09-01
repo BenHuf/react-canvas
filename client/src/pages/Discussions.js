@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getDiscussions as getDiscussionsApi} from '../discussions.js'
+import { getDiscussions as getDiscussionsApi, createDiscussion as createDiscussionApi} from '../discussions.js'
 import Discussion from '../pages/Discussion'
 import DiscussionForm from "./DiscussionForm.js";
 
@@ -18,6 +18,10 @@ const Discussions = ({currentUserId}) => {
 
     const addDiscussion = (text, parentId) => {
         console.log('addDiscussion', text, parentId);
+        createDiscussionApi(text, parentId)
+            .then(discussion => {
+                setDiscussions([discussion, ...discussions])
+        })
     }
 
     useEffect(() => {

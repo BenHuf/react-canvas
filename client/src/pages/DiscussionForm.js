@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import Discussions from "./Discussions";
 
-const DiscussionForm = (handleSubmit) => {
+const DiscussionForm = ({handleSubmit}) => {
 
     const [text, setText] = useState("");
 
-    const onSubmit = e => {
+    const isTextAreaDisabled = text.length === 0;
+
+    const onSubmit = (e) => {
         e.preventDefault()
-        handleSubmit(text)
+        handleSubmit(text);
+        setText("");
     }
 
     return (
@@ -15,7 +19,7 @@ const DiscussionForm = (handleSubmit) => {
                 className="discussion-form-textarea" 
                 value={text} 
                 onChange={(e) => setText(e.target.value)}/>
-            <button className="discussion-form-button">Write</button>
+            <button className="discussion-form-button" disabled={isTextAreaDisabled}>Write</button>
         </form>
     )
 }
