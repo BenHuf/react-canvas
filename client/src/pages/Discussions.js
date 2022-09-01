@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { getComments as getCommentsApi} from '../comments.js'
+import { getDiscussions as getDiscussionsApi} from '../discussions.js'
+import Discussion from '../pages/Discussion'
 
 const Discussions = ({currentUserId}) => {
 
-    const [comments, setComments] = useState([]);
-    console.log(comments)
+    const [discussions, setDiscussions] = useState([]);
+    console.log(discussions)
     
-    const parentComments = comments.filter(comments => comments.parentId === null);
+    const parentDiscussions = discussions.filter(discussions => discussions.parentId === null);
 
     useEffect(() => {
-        getCommentsApi()
+        getDiscussionsApi()
         .then(data => {
-            setComments(data)
+            setDiscussions(data)
         })
     }, [])
     // TODO: Handle comment functionality
@@ -26,11 +27,11 @@ const Discussions = ({currentUserId}) => {
     // }
 
     return (
-        <div className="comments">
-            <h3 className="comments-title">Discuss Rorshachs</h3>
-            <div className="comments-container">
-                {parentComments.map((parentComment) => (
-                    <div key={parentComment.id}>{parentComment.body}</div>
+        <div className="discussions">
+            <h3>Discuss Rorschachs</h3>
+            <div className="discussions-container">
+                {parentDiscussions.map((parentDiscussion) => (
+                    <Discussion key={parentDiscussion.id} comment={parentDiscussion}/>
                 ))}
             </div>
         </div>

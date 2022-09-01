@@ -8,7 +8,7 @@ import Login from "./pages/Login"
 import PageNotFound from "./pages/404"
 import Navigation from "./components/Navigation"
 import Canvas from './components/Canvas'
-import Discussion from './pages/Discussion'
+import Discussions from './pages/Discussions'
 import Rorschachs from './pages/Rorschachs'
 import "bootstrap/dist/css/bootstrap.min.css"
 
@@ -40,7 +40,7 @@ function App() {
             <Route path=":id" element={<User />} />
           </Route>
           <Route path="/draw" element={<Canvas />} />
-          <Route path="/discuss" element={<Discussion />} />
+          <Route path="/discuss" element={<Discussions currentUserId="1"/>} />
           <Route path="/rorschachs" element={<Rorschachs />} />
           <Route path="*" element={<PageNotFound />} />
           </Route>
