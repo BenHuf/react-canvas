@@ -14,6 +14,9 @@ function downloadURI(uri, name) {
 }
 
 const Canvas = (props) => {
+
+  document.body.addEventListener('touchmove', function(e){ e.preventDefault(); });
+
   const [tool, setTool] = React.useState('pen');
   const [color, setColor] = React.useState("#000000")
   const [width, setWidth] = React.useState(7)
