@@ -9,18 +9,19 @@
   margin: 0;
   padding: 0;
 }
-/* H O M E P A G E  S T Y L I N G */
 
+/* H O M E P A G E  S T Y L I N G  
 /* N A V  B A R */
 .bg-nav {
   background-color: #2d187c;
 }
 
+/* B A C K G R O U N D  I M A G E */
 .bck-image {
   background-image: url(./images/rorschach-ink.jpeg);
   background-size: cover;
   border-radius: 20px;
-  height: 90vh;
+  height: 100vh;
 }
 
 .greet {
@@ -43,7 +44,7 @@
   padding-right: 90px;
   padding-bottom: 90px;
   padding-left: 90px;
-  height: 90vh;
+  height: 100vh;
 }
 .home-container p {
   font-size: 30px;
@@ -55,6 +56,26 @@
 
 /* L O G I N  B U T T O N */
 .home-btn-log {
+  color: #91dff2;
+  background: none;
+  border-radius: 20px;
+  padding: 30px, 45px;
+  width: 120px;
+  height: 40px;
+  border: 1px solid #91dff2;
+  outline: none;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.home-btn-log:hover {
+  color: #fff;
+  background: #91dff2;
+}
+
+/* S I G N  U P  B U T T O N */
+.home-btn-sign {
   color: #2d187c;
   background: none;
   border-radius: 20px;
@@ -70,33 +91,25 @@
   cursor: pointer;
 }
 
-.home-btn-log:hover {
+.home-btn-sign:hover {
   color: #fff;
   background: #2d187c;
 }
 
-/* S I G N  U P  B U T T O N */
-.home-btn-sign {
-  color: #91dff2;
-  background: none;
-  border-radius: 20px;
-  padding: 30px, 45px;
-  width: 120px;
-  height: 40px;
-  border: 1px solid #91dff2;
-  outline: none;
-  font-size: 20px;
-  font-weight: 500;
-  cursor: pointer;
+/* R O R S C H A C H  S T Y L I N G */
+.rorP {
+  color: #2d187c;
+  font-size: 30px;
+  text-align: center;
 }
 
-.home-btn-sign:hover {
-  color: #fff;
-  background: #91dff2;
-}
+/* L O G I N  S T Y L I N G */
 
-/*
+/* U S E R  S T Y L I N G */
 
+/* D I S C U S S  S T Y L I N G */
+
+/* D R A W */
 
 /* F L E X  C O N T E N T */
 .flex-row {
