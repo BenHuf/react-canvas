@@ -10,6 +10,7 @@ import Navigation from "./components/Navigation"
 import Canvas from './components/Canvas'
 import Discussion from './pages/Discussion'
 import Rorschachs from './pages/Rorschachs'
+import SignUp from './pages/Signup'
 import "bootstrap/dist/css/bootstrap.min.css"
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -38,7 +39,7 @@ function App() {
   
 
   return (
-    <ApolloProvider client = {client}>
+    <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
           <Navigation/>
@@ -54,6 +55,7 @@ function App() {
                 <Route path="/draw" element={<Canvas />} />
                 <Route path="/discuss" element={<Discussion />} />
                 <Route path="/rorschachs" element={<Rorschachs />} />
+                <Route path="/signup" element={<SignUp />} />
                 <Route path="*" element={<PageNotFound />} />
               </Routes>
             </div>
