@@ -15,23 +15,23 @@ const Discussions = ({currentUserId}) => {
             setDiscussions(data)
         })
     }, [])
-    // TODO: Handle comment functionality
-    const handleSubmit = (e) => {
-    }
-
-    // TODO: Handle delete functionality
-    const handleDelete = (e) => {
-    }
-    // TODO: Add Reply functionality - nested? 
-    // const handleReply = (e) => {
+    // // TODO: Handle comment functionality
+    // const handleSubmit = (e) => {
     // }
+
+    // // TODO: Handle delete functionality
+    // const handleDelete = (e) => {
+    // }
+    // // TODO: Add Reply functionality - nested? 
+    // // const handleReply = (e) => {
+    // // }
 
     return (
         <div className="discussions">
             <h3>Discuss Rorschachs</h3>
             <div className="discussions-container">
                 {parentDiscussions.map((parentDiscussion) => (
-                    <Discussion key={parentDiscussion.id} comment={parentDiscussion}/>
+                    <Discussion key={parentDiscussion.id} discussion={parentDiscussion}/>
                 ))}
             </div>
         </div>

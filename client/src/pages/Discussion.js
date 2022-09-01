@@ -1,19 +1,31 @@
 import React from "react";
+// import { createDiscussion } from "../discussions";
+import userIcon from '../images/user-icon.png'
 
-const Discussion = () => {
+const Discussion = ({discussion}) => {
     // TODO: Handle comment functionality
-    const handleSubmit = (e) => {
-    }
+    // const handleSubmit = (e) => {
+    // }
 
     // TODO: Handle delete functionality
-    const handleDelete = (e) => {
-    }
+    // const handleDelete = (e) => {
+    // }
     // TODO: Add Reply functionality - nested? 
     // const handleReply = (e) => {
     // }
 
   return (
-    <div>
+    <div className="discussion">
+      <div className="discussion-image-container">
+        <img src={userIcon} className="user-icon" alt="user-icon"/>
+        <div className="discussion-right-part">
+          <div className="discussion-content">
+            <div className="discussion-author">{discussion.username}</div>
+            <div>{discussion.createdAt}</div>
+          </div>
+          <div className="comment-text">{discussion.body}</div>
+        </div>
+      </div>
       
     </div>
   )
