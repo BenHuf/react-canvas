@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { Stage, Layer, Line, Text, Group } from 'react-konva';
 import "../Canvas.css"
 
+document.body.addEventListener('touchmove', function(e){ e.preventDefault(); });
+
 // function to convert current canvas to image 
 function downloadURI(uri, name) {
   var link = document.createElement('a');
