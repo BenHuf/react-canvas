@@ -2,7 +2,7 @@ import React from "react";
 // import { createDiscussion } from "../discussions";
 import userIcon from '../images/user-icon.png'
 
-const Discussion = ({discussion}) => {
+const Discussion = ({discussion, replies}) => {
     // TODO: Handle comment functionality
     // const handleSubmit = (e) => {
     // }
@@ -24,6 +24,13 @@ const Discussion = ({discussion}) => {
             <div>{discussion.createdAt}</div>
           </div>
           <div className="comment-text">{discussion.body}</div>
+          {replies.length > 0 && (
+            <div className="replies">
+              {replies.map(reply => (
+                <Discussion discussion={reply} key={reply.id} replies={[]}/>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       
