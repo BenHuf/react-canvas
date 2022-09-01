@@ -6,33 +6,51 @@
 * {
   box-sizing: border-box;
   font-family: "Urbanist", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+/* H O M E P A G E  S T Y L I N G */
+
+/* N A V  B A R */
+.bg-nav {
+  background-color: #2d187c;
 }
 
 .bck-image {
   background-image: url(./images/rorschach-ink.jpeg);
+  background-size: cover;
+  border-radius: 20px;
+  height: 90vh;
 }
 
 .greet {
-  color: #91dff2;
-}
-
-.site-name {
   color: #2d187c;
 }
 
-.para {
+.site-name {
   color: #91dff2;
+}
+
+.para {
+  color: #2d187c;
 }
 
 .home-container {
   text-align: center;
-  border-radius: 20px;
-  border: solid 1px #2d187c;
+  align-items: center;
   background-color: #8b74e079;
   padding-top: 90px;
   padding-right: 90px;
   padding-bottom: 90px;
   padding-left: 90px;
+  height: 90vh;
+}
+.home-container p {
+  font-size: 30px;
+}
+
+.home-container h1 {
+  font-size: 60px;
 }
 
 /* L O G I N  B U T T O N */
@@ -47,6 +65,8 @@
   outline: none;
   font-size: 20px;
   font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 20px;
   cursor: pointer;
 }
 
@@ -74,6 +94,9 @@
   color: #fff;
   background: #91dff2;
 }
+
+/*
+
 
 /* F L E X  C O N T E N T */
 .flex-row {
