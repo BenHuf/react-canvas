@@ -47,7 +47,6 @@ const Canvas = (props) => {
     lastLine.points = lastLine.points.concat([point.x, point.y]);
     lastFlip.points = lastFlip.points.concat([window.innerWidth-point.x, point.y]);
 
-    console.log(flips.points)
     // replace last
     lines.splice(lines.length - 1, 1, lastLine);
     flips.splice(flips.length - 1, 1, lastFlip);
@@ -87,7 +86,6 @@ const Canvas = (props) => {
     lastLine.points = lastLine.points.concat([point.x, point.y]);
     lastFlip.points = lastFlip.points.concat([window.innerWidth-point.x, point.y]);
 
-    console.log(flips.points)
     // replace last
     lines.splice(lines.length - 1, 1, lastLine);
     flips.splice(flips.length - 1, 1, lastFlip);
@@ -115,9 +113,15 @@ const Canvas = (props) => {
     // downloadURI(uri, 'stage.png');
   };
 
+  const clearCanvas = () => {
+    setLines([]);
+    setFlips([]);
+  };
+
   return (
     <div>
       <p>Click and drag to draw!</p>
+      <button onClick={clearCanvas}>Clear</button>
 
       {/* Tool Selector */}
       {/* <select
@@ -156,16 +160,10 @@ const Canvas = (props) => {
         placeholder={"Width"}
       >
         <option value="7" disabled>Width</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
+        <option value="3">small</option>
+        <option value="7">medium</option>
+        <option value="14">large</option>
+        <option value="20">largest</option>
       </select>
 
       <Stage
