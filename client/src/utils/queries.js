@@ -1,37 +1,35 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_THOUGHTS = gql`
-  query thoughts($username: String) {
-    thoughts(username: $username) {
+export const QUERY_PICS = gql`
+  query pics($username: String) {
+    pics(username: $username) {
       _id
-      thoughtText
+      pngString
       createdAt
       username
-      reactionCount
-      reactions {
+      comments {
         _id
         createdAt
         username
-        reactionBody
+        commentBody
       }
     }
   }
 `;
 
 
-export const QUERY_THOUGHT = gql`
-  query thought($id: ID!) {
-    thought(_id: $id) {
+export const QUERY_PIC = gql`
+  query pic($id: ID!) {
+    pic(_id: $id) {
       _id
-      thoughtText
+      pngString
       createdAt
       username
-      reactionCount
-      reactions {
+      comments {
         _id
         createdAt
         username
-        reactionBody
+        commentBody
       }
     }
   }
@@ -43,16 +41,10 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      friendCount
-      friends {
+      pics {
         _id
-        username
-      }
-      thoughts {
-        _id
-        thoughtText
+        pngString
         createdAt
-        reactionCount
       }
     }
   }
@@ -64,22 +56,16 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      friendCount
-      thoughts {
+      pics {
         _id
-        thoughtText
+        pngString
         createdAt
-        reactionCount
-        reactions {
+        comments {
           _id
           createdAt
-          reactionBody
+          commentBody
           username
         }
-      }
-      friends {
-        _id
-        username
       }
     }
   }
@@ -91,11 +77,6 @@ export const QUERY_ME_BASIC = gql`
       _id
       username
       email
-      friendCount
-      friends {
-        _id
-        username
-      }
     }
   }
 `;
