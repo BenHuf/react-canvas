@@ -53,7 +53,7 @@ function App() {
                   <Route path=":username" element={<User />} />
                 </Route>
                 <Route path="/draw" element={<Canvas />} />
-                <Route path="/discuss" element={<Discussion />} />
+                <Route path="/discuss" element={<Discussions />} />
                 <Route path="/rorschachs" element={<Rorschachs />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="*" element={<PageNotFound />} />
