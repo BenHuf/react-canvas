@@ -4,7 +4,6 @@ import { createRoot } from 'react-dom/client';
 import { useMutation } from '@apollo/client';
 import { Stage, Layer, Line, Text, Group } from 'react-konva';
 import { ADD_PIC } from '../utils/mutations'
-import "../Canvas.css"
 
 // function to convert current canvas to image 
 function downloadpic(pic, name) {
