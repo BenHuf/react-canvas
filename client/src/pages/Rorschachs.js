@@ -12,11 +12,11 @@ const Rorschachs = () => {
   }
 
   return (
-    <>
+    <div>
     {data.pics.map((pic) => (
       <a><img src={pic.pngString} /></a>
     ))}
-    </>
+    </div>
   )
 }
 
