@@ -27,7 +27,7 @@ export const ADD_USER = gql`
 
 
 export const ADD_PIC = gql`
-  mutation addPic($pngSting: String!) {
+  mutation addPic($pngString: String!) {
     addPic(pngString: $pngString) {
       _id
       pngString

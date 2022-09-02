@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Container, Form } from 'react-bootstrap';
 import { createRoot } from 'react-dom/client';
+import { useMutation } from '@apollo/client';
 import { Stage, Layer, Line, Text, Group } from 'react-konva';
+import { ADD_PIC } from '../utils/mutations'
 import "../Canvas.css"
 
 // function to convert current canvas to image 
-function downloadURI(uri, name) {
+function downloadpic(pic, name) {
   var link = document.createElement('a');
   link.download = name;
-  link.href = uri;
+  link.href = pic;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -23,6 +25,7 @@ const Canvas = (props) => {
   const [canvasH, setCanvasH] = React.useState([window.innerHeight]);
   const [canvasW, setCanvasW] = React.useState([window.innerWidth]);
   const [scale, setScale] = React.useState({x: 1, y: 1})
+  const [addPic, { error }] = useMutation(ADD_PIC);
 
   const isDrawing = React.useRef(false);
   
@@ -140,15 +143,24 @@ const Canvas = (props) => {
 
   const stageRef = React.useRef(null);
 
-  const handleExport = () => {
-    const uri = stageRef.current.toDataURL();
-    console.log(uri);
+  const handleExport = async () => {
+    const pic = stageRef.current.toDataURL();
+    pic.toString();
+
+    try {
+      await addPic({variables: {pngString: pic}});
+    }
+    catch (err) {
+      console.log(err)
+    }
+
+    // console.log(pngString);
     setLines([]);
     setFlips([]);
     // Instead of logging here we can 
     // save to database or allow downloads
-    // using the generated uri
-    // downloadURI(uri, 'stage.png');
+    // using the generated pic
+    // downloadpic(pic, 'stage.png');
   };
 
   const clearCanvas = () => {
