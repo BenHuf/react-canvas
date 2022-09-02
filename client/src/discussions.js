@@ -46,3 +46,7 @@ export const createDiscussion = async (text, parentId = null) => {
         createdAt: new Date().toISOString(),
     };
 };
+
+export const deleteDiscussion = async (text) => {
+    return {};
+};

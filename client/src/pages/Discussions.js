@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getDiscussions as getDiscussionsApi, createDiscussion as createDiscussionApi} from '../discussions.js'
+import { getDiscussions as getDiscussionsApi, 
+        createDiscussion as createDiscussionApi,
+        deleteDiscussion as deleteDiscussionApi} from '../discussions.js'
 import Discussion from '../pages/Discussion'
 import DiscussionForm from "./DiscussionForm.js";
 
@@ -22,6 +24,15 @@ const Discussions = ({currentUserId}) => {
             .then(discussion => {
                 setDiscussions([discussion, ...discussions])
         })
+    }
+
+    const deleteDiscussion = (discussionId) => {
+        if (window.confirm('Are you sure that you want to remove comment?')) {
+            deleteDiscussionApi(discussionId).then(() => {
+                const updatedDiscussion  = discussions.filter(discussion => discussion.id !== discussionId)
+                setDiscussions(updatedDiscussion)
+            })
+        }
     }
 
     useEffect(() => {
@@ -52,7 +63,9 @@ const Discussions = ({currentUserId}) => {
                     <Discussion 
                         key={parentDiscussion.id} 
                         discussion={parentDiscussion} 
-                        replies={getReplies(parentDiscussion.id)}/>
+                        replies={getReplies(parentDiscussion.id)}
+                        currentUserId={currentUserId}
+                        deleteDiscussion={deleteDiscussion}/>
                 ))}
             </div>
         </div>
