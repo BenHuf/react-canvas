@@ -8,7 +8,7 @@ import Login from "./pages/Login"
 import PageNotFound from "./pages/404"
 import Navigation from "./components/Navigation"
 import Canvas from './components/Canvas'
-import Discussion from './pages/Discussion'
+import Discussions from './pages/Discussions'
 import Rorschachs from './pages/Rorschachs'
 import SignUp from './pages/Signup'
 import "bootstrap/dist/css/bootstrap.min.css"
