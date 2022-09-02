@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { HashRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Container from "react-bootstrap/Container"
 import Home from "./pages/Home"
 import Users from "./pages/Users"
@@ -10,43 +10,59 @@ import Navigation from "./components/Navigation"
 import Canvas from './components/Canvas'
 import Discussions from './pages/Discussions'
 import Rorschachs from './pages/Rorschachs'
+import SignUp from './pages/Signup'
 import "bootstrap/dist/css/bootstrap.min.css"
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
+
 
 function App() {
-  const [ authUser, setAuthUser ] = useState(null)
-
-  // const checkForValidUser = async() => {
-  //   const authCheck = await fetch("/api/user/lookup")
-  //   const checkResult = await authCheck.json()
-  //   if( checkResult && checkResult.result === "success" ){
-  //     setAuthUser(checkResult.payload)
-  //   }
-  // }
   
-  // useEffect(() => {
-  //   checkForValidUser()
-  // }, [])
 
   return (
-    <>
-      <HashRouter>
-        <Routes>
-          <Route path="/" element={<Navigation />}>
-          <Route index element={<Home />} />
-          <Route path="/draw" element={<Canvas />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/user">
-            <Route path=":id" element={<User />} />
-          </Route>
-          <Route path="/draw" element={<Canvas />} />
-          <Route path="/discuss" element={<Discussions currentUserId="1"/>} />
-          <Route path="/rorschachs" element={<Rorschachs />} />
-          <Route path="*" element={<PageNotFound />} />
-          </Route>
-        </Routes>
-      </HashRouter>
-    </>
+    <ApolloProvider client={client}>
+      <Router>
+        <div className="flex-column justify-flex-start min-100-vh">
+          <Navigation/>
+            <div className="container">
+              <Routes>
+                <Route path="/" element={<Home />}/>          
+                <Route path="/draw" element={<Canvas />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/users" element={<Users />} />
+                <Route path="/user">
+                  <Route path=":username" element={<User />} />
+                </Route>
+                <Route path="/draw" element={<Canvas />} />
+                <Route path="/discuss" element={<Discussion />} />
+                <Route path="/rorschachs" element={<Rorschachs />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </div>
+          {/* PLACEHOLDER FOR FOOTER ELEMENT */}
+        </div>
+      </Router>
+    </ApolloProvider>
   );
 }
 
