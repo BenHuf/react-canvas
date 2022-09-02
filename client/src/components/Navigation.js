@@ -18,6 +18,7 @@ const Navigation = (props) => {
               <Nav.Link href="#discuss" as={Link} to="/discuss">Discuss</Nav.Link>
               <Nav.Link href="#users" as={Link} to="/users">Users</Nav.Link>
               <Nav.Link href="#login" as={Link} to="/login">Login</Nav.Link>
+              <Nav.Link href="/signup">Sign Up</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

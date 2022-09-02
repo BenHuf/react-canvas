@@ -1,16 +1,22 @@
+import logo from '../assets/images/logo.svg'
+import '../assets/stylesheets/App.css';
 
 const Home = (props) => {
   
-  return (
-    <div>
-      <h1>Hello!</h1>
-      <p>Welcome to My Rorschach -- Design abstract art with strangers, browse past creations, and weigh in on what you see! </p>
 
-      { props.authUser && props.authUser.email !== undefined && (
-        <p>We have a logged in user: { props.authUser.email } </p>
-      )}
-    </div>
-  )
-}
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Welcome to MyRorschach! Sign Up or Log In to Continue!!!!
+          </p>
+        </header>
+      </div>
+    );
+  }
+  
 
-export default Home
+  
+
+export default Home;
